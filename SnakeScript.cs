@@ -15,6 +15,7 @@ public class SnakeScript : MonoBehaviour {
 
 	// Variables start_____________________
 	public int numberOfSnakes = 0;
+	public bool makeNewSnake = false;
 
 
 	// Variables end_______________________

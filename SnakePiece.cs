@@ -17,7 +17,10 @@ public class SnakePiece : MonoBehaviour {
 	private Transform myTransform;
 
 	// This variable states if there has been a collision
+	private float range = 1;
+	private RaycastHit hit;
 	public bool iAteFood = false;
+	private Collision colHit;
 
 	// Variables end____________________
 
@@ -33,14 +36,24 @@ public class SnakePiece : MonoBehaviour {
 		sScript.numberOfSnakes += 1;
 		snakeNumber  = sScript.numberOfSnakes;
 	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		// Check it is the snake head colliding
+		if(snakeNumber == 1 && collision.gameObject.tag == "Food")
+		{
+			// Tell the snake manager it must make a new snake piece
+			GameObject snakeManager = GameObject.Find("SnakeManager");
+			SnakeScript sScript = snakeManager.GetComponent<SnakeScript>();
+			sScript.makeNewSnake = true;
+		}
+		
+		// Tell the food manager to destroy the current food and make some new food
+	}
+
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		// If the snake piece is the snake head, then check if it collided with a piece of food
-		if(snakeNumber == 1)
-		{
-			// Check if I interact with an object that has a tag of "food"
-		}
 	}
 }
